@@ -36,6 +36,23 @@ const getTabelBarang = async () => {
         tabelBarang.appendChild(row);
       });
     }
+    tabelBarang.addEventListener("click", (event) => {
+      if (event.target.tagName === "BUTTON") {
+        if (event.target.textContent === "update") {
+          const productId = event.target.getAttribute("data-product-id");
+          console.log("Product ID untuk update:", productId);
+          document.location.href = `update-barang.html?product_id=${productId}`;
+        } else if (event.target.textContent === "hapus") {
+          const productId = event.target.getAttribute("data-product-id");
+          const confirmDelete = confirm(
+            "Apakah Anda yakin ingin menghapus barang ini?"
+          );
+          if (confirmDelete) {
+            hapusBarang(productId);
+          }
+        }
+      }
+    });
   } catch (err) {
     console.log(err);
   }

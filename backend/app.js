@@ -97,7 +97,7 @@ app.put("/update-barang", upload.single("image_url"), (req, res) => {
 });
 
 app.delete("/hapus-barang", (req, res) => {
-  const product_id = req.body;
+  const { product_id } = req.body;
   const sql = `DELETE FROM products WHERE product_id = ${product_id}`;
 
   database.query(sql, (err, result) => {
